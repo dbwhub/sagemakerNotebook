@@ -1,0 +1,51 @@
+20210305labNote
+Examples of notebooks that have been completed in the lab playground are as follows along with any required changes you need to make to run them in the lab playground:
+
+##INTRODUCTION TO AMAZON ALGORITHMS
+
+#blazingtext_hosting_pretrained_fasttext.ipynb
+In Creating SageMaker Inference Endpoint, you must change instance_type='ml.m4.xlarge' to instance_type='ml.t2.medium'
+The predictor creation code also should be changed to the following to work with sagemaker>=2
+lang_id = sagemaker.Model(model_data=model_location, image_uri=container, role=role, sagemaker_session=sess)
+lang_id.deploy(initial_instance_count = 1,instance_type = 'ml.t2.medium')
+predictor = sagemaker.predictor.RealTimePredictor(endpoint_name=lang_id.endpoint_name,
+                                  sagemaker_session=sess,
+                                  serializer=sagemaker.serializers.JSONSerializer(),
+                                  deserializer=sagemaker.deserializers.JSONDeserializer())
+#DeepAR-Electricity.ipynb
+Before starting, open a terminal (File > New > Terminal and enter jupyter labextension install @jupyter-widgets/jupyterlab-manager to install the extension that properly displays the interactive diagrams at the end. It takes a minute to install. Then refresh your browser to enable the extension for your session.
+In Train a model, you must change train_instance_type='ml.c4.2xlarge' to train_instance_type='ml.m4.xlarge'
+In Create endpoint and predictor, you must change instance_type='ml.m4.xlarge' to instance_type='ml.t2.medium'
+In Additional features, you must run predictor.delete_endpoint() at the end of the notebook to avoid having more than one endpoint at any moment. Then you must again change the train_instance_type and instance_type as you did before.
+factorization_machines_mnist.ipynb 
+In Permissions and environment variables, you must change bucket = '<your_s3_bucket_name_here>' in the first code cell to use the name of the lab playground's bucket beginning with cloudacademylabs-sagemaker-date seen here
+In Training the factorization machine model, you must change train_instance_type='ml.c4.xlarge' to train_instance_type='ml.m4.xlarge'
+In Set up hosting for the model, you must change instance_type='ml.m4.xlarge' to instance_type='ml.t2.medium'
+
+
+##INTRODUCTION TO APPLYING MACHINE LEARNING
+sagemaker-countycensusclustering.ipynb
+In 3.a. Dimensionality reduction, you must change
+bucket = '<your_s3_bucket_name_here>' in the first code cell to use the name of the lab playground's bucket beginning with cloudacademylabs-sagemaker-date seen here
+ train_instance_type='ml.c4.xlarge' to train_instance_type='ml.m4.xlarge'
+In Population segmentation using unsupervised clustering, you must change train_instance_type='ml.c4.xlarge' to train_instance_type='ml.m4.xlarge'
+In Accessing the PCA model attributes, you must change job_name='<your_SageMaker_PCA_job_name_here>' in the first code cell to use the name of the PCA training job beginning with pca- seen here
+Before starting Step 4: Drawing conclusions from our modelling, you must run the sagemaker.Session().delete_endpoint(pca_predictor.endpoint) cell at the bottom of the notebook to avoid creating two endpoints at once
+In 4.a. Accessing the KMeans model attributes, you must change job_name='<your_SageMaker_KMeans_job_name_here>' in the first code cell to use the name of the k-means training job beginning with kmeans- seen here
+REINFORCEMENT LEARNING
+rl_portfolio_management_coach_customEnv.ipynb
+In Train the RL model using the Python SDK Script mode, you must change instance_type = "ml.m4.4xlarge" to instance_type = "ml.m4.xlarge"
+ADDITIONAL EXAMPLES GITHUB FASTAI COURSE V3
+Lesson1_pets.ipynb
+In the Select kernel form, select the conda_pytorch_p36 kernel and click Select. In the upper-right corner you should see conda_pytorch_p36 as the active kernel alt
+In Training: resnet34, you should change learn.fit_one_cycle(4) to learn.fit_one_cycle(1) to reduce training time to approximately 24 minutes from 96 minutes.
+Lesson3_imdb.ipynb
+In the Select kernel form, select the conda_pytorch_p36 kernel and click Select. In the upper-right corner you should see conda_pytorch_p36 as the active kernel alt
+In Preparing the data, you must change path = untar_data(URLs.IMDB_SAMPLE) to path = untar_data('https://github.com/cloudacademy/sagemaker-notebook-playground/blob/master/fastai/data/examples/imdb_sample')
+In Language model, running learn.lr_find() takes ~22 hours to complete so you can simply read the saved output from this point forward to finish the notebook within the allowed time for the lab playground.
+ADDITIONAL EXAMPLES GITHUB PYTORCH TUTORIALS
+audio_classifier_tutorial.ipynb
+In the Select kernel form, select the conda_pytorch_p36 kernel and click Select. In the upper-right corner you should see conda_pytorch_p36 as the active kernel alt
+SAGEMAKER DEBUGGER
+tf-mnist-builtin-rule.ipynb
+You must add %matplotlib inline at the top of the final cell for the plot to display)
