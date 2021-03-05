@@ -1,6 +1,10 @@
 20210305labNote
 Examples of notebooks that have been completed in the lab playground are as follows along with any required changes you need to make to run them in the lab playground:
 
+https://docs.aws.amazon.com/sagemaker/latest/dg/deepar.html
+https://fasttext.cc/docs/en/english-vectors.html
+https://aws.amazon.com/blogs/machine-learning/analyze-us-census-data-for-population-segmentation-using-amazon-sagemaker/
+
 ##INTRODUCTION TO AMAZON ALGORITHMS
 
 #blazingtext_hosting_pretrained_fasttext.ipynb
